@@ -29,7 +29,7 @@ public class Usuario {
       @Temporal(TemporalType.DATE)
       private Date dataCadastro;
      
-      @Column(name="login", nullable=false, unique=false)
+      @Column(name="data_nascimento")
       private Date dataNascimento;
       
       @Column(name="email", nullable=false, unique=true)
