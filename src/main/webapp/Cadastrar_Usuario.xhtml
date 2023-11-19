@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head><title>Cadastro de usuario</title></h:head>
+	
+	<h:body>
+		<h:form id="form">
+		
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			
+			<p:panel header="Cadastro de Usuarios">
+			
+			<div>
+				<p:link outcome="index" value="voltar"/>		
+			</div>
+			
+				<h:panelGrid columns="1" >
+					
+						<p:outputLabel for="nome" value="Nome do usuário "/>
+						<p:inputText id="nome" value="#{usuarioBean.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio" />
+											
+						<p:outputLabel for="login" value="Login "/>
+						<p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					
+						<p:outputLabel for="Email" value="Email"/>
+						<p:inputText id="Email" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="Campo Obrigatorio"/>
+						
+						<p:outputLabel for="senha" value="Senha: "/>
+						<p:password id="senha" value="#{usuarioBean.usuario.senha}"  />	
+               			
+               			<p:outputLabel id="dataCadastro" value="#{usuarioBean.usuario.dataCadastro}" />					
+					
+					
+						<p:commandButton value="Salvar" action="#{usuarioBean.salvar}" update="form" styleClass="ui-button-secondary"/>
+								
+								
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</h:body>	
+</html>

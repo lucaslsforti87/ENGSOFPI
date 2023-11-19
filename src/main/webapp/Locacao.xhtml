@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	
+	<h:head><title>LocaCar</title></h:head>
+	
+	<h:body >
+	<h:form id="form">
+	
+	<p:link outcome="index" value="voltar" 
+				style="display: flex;"/>
+   
+        <p:dataTable id="products" var="product" value="#{dtContextMenuView.products}" rowKey="#{product.id}"
+                     selection="#{dtContextMenuView.selectedProduct}" selectionMode="single">
+            <f:facet name="header">
+                ==LISTA DE CARROS DISPONIVEIS==
+            </f:facet>
+            						
+            <p:column headerText="Disponiveis">
+                <h:outputText value="#{product.disponiveis}" />
+            </p:column>
+            <p:column headerText="Especificacoes">
+                <h:outputText value="#{product.especificacoes}" />
+            </p:column>
+            <p:column headerText="Contato">
+                <h:outputText value="#{product.contatos}" />
+            </p:column>
+            <p:column headerText="Data">
+                <h:outputText value="#{product.data}" />
+            </p:column>
+        </p:dataTable>
+        	</h:form>
+       </h:body>
+</html>
