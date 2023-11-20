@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Tela Recuperar Senha</title>
+    <style>
+        .start { background: #81c784; }
+        .deadline { background: #ef9a9a; }
+        .ui-datepicker-calendar .ui-state-disabled { opacity: .2; }
+    </style>
+</head>
+<body>
+
+<h:form id="form">
+    <p:growl id="growl"/>
+
+    <div class="card">
+        <h:panelGrid columns="2" cellpadding="7">
+            <p:outputLabel for="lazy" value="Lazy and Navigator"/>
+            <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{datePickerMetadataView.date2}"
+                          navigator="true" yearNavigator="true" readonlyInput="false">
+                <p:ajax event="viewChange" listener="#{datePickerMetadataView.onViewChange}" update="growl"/>
+            </p:datePicker>
+        </h:panelGrid>
+    </div>
+</h:form>
+
+</body>
+</html>
