@@ -8,93 +8,80 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import dao.UsuarioDao;
-
 import entidade.Usuario;
 import util.MessageUtil;
 
 @ManagedBean
 @ViewScoped
-public class UsuarioBean implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class UsuarioBean implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	
-	private Usuario usuario = new Usuario();
-	
-	private Date dataCadastro = new Date();
-	
-	private List<Usuario> list;
-	
-	private  String contarUsuario;
-	
-	public UsuarioBean() {
-		System.out.println("Construiu o Bean");
-		
-	}
-		
-		
-	public String salvar() {
-			
-		try {			
-			usuario.setDataCadastro(dataCadastro);
-			UsuarioDao.salvar(usuario);
-			MessageUtil.sucesso("Sucesso: ", "Usuário criado com sucesso!");
-			usuario = new Usuario();
-				
-		} catch(Exception e) {
-			MessageUtil.erro("Erro: ", "Erro ao criar usuário!");
-		}
-			
-		return null;
-		}
-	
-	public String editar() {		
-		UsuarioDao.editar(usuario);
-		usuario = new Usuario();
-		return null;
-	}
+    private Usuario usuario = new Usuario();
+    private Date dataCadastro = new Date();
+    private List<Usuario> list;
+    private String contarUsuario;
+    
 
-	public void deletar() {		
-		UsuarioDao.deletar(usuario);
-		list = UsuarioDao.listarTodos();
-	}
-	
-	public String listarTodos() {		
-		UsuarioDao.listarTodos();
-		return null;
-	}		
+    public UsuarioBean() {
+        System.out.println("Construiu o Bean");
+    }
 
-	public List<Usuario> getList() {
-		if (list == null) {
-			list = UsuarioDao.listarTodos();
-		}
-		return list;
-	}
-	
-	public void setList(List<Usuario> list) {
-		this.list = list;
-	}
+    public String salvar() {
+        try {
+            usuario.setDataCadastro(dataCadastro);
+            UsuarioDao.salvar(usuario);
+            MessageUtil.sucesso("Sucesso: ", "Usuário criado com sucesso!");
+            usuario = new Usuario();
+        } catch (Exception e) {
+            MessageUtil.erro("Erro: ", "Erro ao criar usuário!");
+        }
+        return null;
+    }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public String editar() {
+        UsuarioDao.editar(usuario);
+        usuario = new Usuario();
+        return null;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public void deletar() {
+        UsuarioDao.deletar(usuario);
+        list = UsuarioDao.listarTodos();
+    }
 
-	public String getContarUsuario() {
-		
-		if (list == null) {
-			list = UsuarioDao.listarTodos();
-		}
-		return Integer.toString(list.size());
-	}
+    public String listarTodos() {
+        list = UsuarioDao.listarTodos();
+        return null;
+    }
 
-	public void setContarUsuario(String contarUsuario) {
-		this.contarUsuario = contarUsuario;
-	}	
-	
-	public String contarEmail() {
-		return contarUsuario;	
-	}	
+    public List<Usuario> getList() {
+        return list;
+    }
+
+    public void setList(List<Usuario> list) {
+        this.list = list;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContarUsuario() {
+        if (list == null) {
+            list = UsuarioDao.listarTodos();
+        }
+        return Integer.toString(list.size());
+    }
+
+    public void setContarUsuario(String contarUsuario) {
+        this.contarUsuario = contarUsuario;
+    }
+
+    public String contarEmail() {
+        return contarUsuario;
+    }
 }

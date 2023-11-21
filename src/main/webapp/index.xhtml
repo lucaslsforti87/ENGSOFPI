@@ -34,19 +34,22 @@
 					<div>
 						<form id="recovery-form" action="processa-recuperacao.php" method="post">
             			 <p:outputLabel type="text" name="email" placeholder="E-mail de Recuperação" required="true"/>
-           				 <p:commandButton icon="pi pi-sign-in" value="Recuperar Senha" />
+           				 
        				 </form>
 					
 					</div>
 					
+					<p:commandButton icon="pi pi-sign-in"  action="#{loginBean.envia}" ajax="false" value="Entrar" />
+					
 					<div>
 						<p:link outcome="Cadastrar_Usuario" value="Cadastrar usuário" />
+						<p:link outcome="Recuperar_Senha" value="Recuperar Senha" />
 													
 					</div>
 					
 					
 					
-						<p:commandButton icon="pi pi-sign-in"  action="#{loginBean.envia}" ajax="false" value="Entrar" />
+						
 						
 									
 				</h:panelGrid>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -7,30 +7,35 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-    <title>Tela Recuperar Senha</title>
-    <style>
-        .start { background: #81c784; }
-        .deadline { background: #ef9a9a; }
-        .ui-datepicker-calendar .ui-state-disabled { opacity: .2; }
-    </style>
-</head>
-<body>
+<h:head>
+    <title>Recuperar Senha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</h:head>
 
-<h:form id="form">
-    <p:growl id="growl"/>
+<h:body>
+    <h:form id="form">
+        <p:messages id="messages" />
 
-    <div class="card">
-        <h:panelGrid columns="2" cellpadding="7">
-            <p:outputLabel for="lazy" value="Lazy and Navigator"/>
-            <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{datePickerMetadataView.date2}"
-                          navigator="true" yearNavigator="true" readonlyInput="false">
-                <p:ajax event="viewChange" listener="#{datePickerMetadataView.onViewChange}" update="growl"/>
-            </p:datePicker>
-        </h:panelGrid>
-    </div>
-</h:form>
+        <p:panel header="The Car - Login">
+            <h:panelGrid columns="1">
+                <div style="margin-top: 30px;">
+                    <p:outputLabel for="login" value="Login:"/>
+                    <p:inputText id="login" value="#{loginBean.usuario.login}" required="true" requiredMessage="Campo Obrigatório"/>
+                </div>
 
-</body>
+                <p:outputLabel for="lazy" value="Lazy and Navigator"/>
+                <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{datePickerMetadataView.date2}"
+                              model="#{loginBean.usuario.dataNascimento}"
+                              monthNavigator="true" yearNavigator="true"/>
+                              
+                <p:commandButton icon="pi pi-sign-in" action="#{loginBean.envia}" ajax="false" value="Entrar" />
+                
+                <div>
+                    <p:link outcome="index" value="Voltar" />
+                </div>
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+
 </html>
