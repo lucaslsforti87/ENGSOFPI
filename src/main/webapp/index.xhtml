@@ -31,21 +31,21 @@
 						<p:password id="senha" value="#{loginBean.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>				
 					</div>
 								
-					<div>
+					
 						<form id="recovery-form" action="processa-recuperacao.php" method="post">
             			 <p:outputLabel type="text" name="email" placeholder="E-mail de Recuperação" required="true"/>
            				 
        				 </form>
 					
-					</div>
+					
 					
 					<p:commandButton icon="pi pi-sign-in"  action="#{loginBean.envia}" ajax="false" value="Entrar" />
 					
-					<div>
+					
 						<p:link outcome="Cadastrar_Usuario" value="Cadastrar usuário" />
 						<p:link outcome="Recuperar_Senha" value="Recuperar Senha" />
 													
-					</div>
+					
 					
 					
 					
