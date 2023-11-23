@@ -30,7 +30,7 @@ public class Usuario {
       private Date dataCadastro;
      
       @Column(name="data_nascimento")
-      private Date dataNascimento;
+      private int dataNascimento;
       
       @Column(name="email", nullable=false, unique=true)
       private String emailUsuario;
@@ -44,11 +44,11 @@ public class Usuario {
 		this.emailUsuario = emailUsuario;
 	}
 
-	public Date getDataNascimento() {
+	public int getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(int dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

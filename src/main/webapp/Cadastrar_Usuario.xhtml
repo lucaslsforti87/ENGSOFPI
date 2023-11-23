@@ -7,6 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
 	<h:head>
 		<title>Cadastro de usuário</title>
 	</h:head>
@@ -36,6 +37,9 @@
 					<p:outputLabel for="senha" value="Senha:"/>
 					<p:password id="senha" value="#{usuarioBean.usuario.senha}" />
 					
+					<p:outputLabel for="dataNascimento" value="Data de Nascimento:"/>
+					<p:inputText id="dataNascimento" value="#{usuarioBean.usuario.dataNascimento}" required="true" requiredMessage="Campo Obrigatorio"/>				
+							
 					<p:outputLabel value="Data de Cadastro:"/>
 					<h:outputText value="#{usuarioBean.usuario.dataCadastro}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
