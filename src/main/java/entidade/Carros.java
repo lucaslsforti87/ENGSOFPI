@@ -1,20 +1,33 @@
 package entidade;
 
+import java.io.Serializable;
 import java.util.Date;
 
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-public class Carros {
+
+//isso aqui 
+@Entity
+public class Carros implements Serializable {
+	private static final long serialVersionUID = 1L; 
+
 	 	@Id
-	    @GeneratedValue
+	    @GeneratedValue 
+	    @Column(name="id", nullable=false, unique=true)
 	    private int id;
+	 	
+	 	@Column(name="Placa_Carro")
 	 	private String placa;
-	 	private int renavam;
-	
+	 	
+	 	@Column(name ="Renavam_Carro")
+		private int renavam;
+	 	
 		@Column(name="Modelo_Carro")
 	 	private String modelo;
 	 	@Column(name="Cor_Carro")
@@ -28,9 +41,9 @@ public class Carros {
 	 	@Column(name="Data_Cadastro")
 	 	private Date DataCadastro;
 	 	@Column(name="Descricao_Carro")
-	 	private String Descricao_Carro;
+	 	private String Descricao;
 	 	@Column(name="Marca_Carro")
-	 	private String marca;
+	 	private String Marca;
 	 	
 	 	 	
 	 	
@@ -41,11 +54,11 @@ public class Carros {
 		public void setId(int id) {
 			this.id = id;
 		}
-		@Column(unique=true, nullable=false, length=8)
-		public String getPlaca() {
+		
+		public String getplaca() {
 		return placa;
 		}
-		public void setPlaca(String placa) {
+		public void setplaca(String placa) {
 			this.placa = placa;
 		}
 		public int getRenavam() {
@@ -95,17 +108,29 @@ public class Carros {
 		}
 	 	
 		public String getDescricao_Carro() {
-			return Descricao_Carro;
+			return Descricao;
 		}
 		public void setDescricao_Carro(String descricao_Carro) {
-			Descricao_Carro = descricao_Carro;
+			Descricao = descricao_Carro;
 		}
 	 	
 		public String getMarca() {
-			return marca;
+			return Marca;
 		}
 		public void setMarca(String marca) {
-			this.marca = marca;
+			this.Marca = marca;
+		}
+		public String getPlaca() {
+			return placa;
+		}
+		public void setPlaca(String placa) {
+			this.placa = placa;
+		}
+		public String getDescricao() {
+			return Descricao;
+		}
+		public void setDescricao(String descricao) {
+			Descricao = descricao;
 		}
 
 }

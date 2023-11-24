@@ -9,12 +9,12 @@
 
 
 	<h:head>
-		<title>Cadastro de Carros</title>
+		<title>Cadastro carros</title>
 	</h:head>
 	
 	<h:body>
 		<h:form id="form">
-		
+		<p:autoUpdate/>
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
@@ -24,40 +24,42 @@
 					<p:link outcome="index" value="Voltar"/>
 				</div>
 			
-				<h:panelGrid columns="1">
-					<p:outputLabel for="PlacaCarro" value="Placa:"/>
-					<p:inputText id="placaCarro" value="#{CarroBean.Carros.placa}" required="true" requiredMessage="Campo Obrigatório" />
+				<h:panelGrid columns="2">
+				
 					
-					<p:outputLabel for="RenavamCarro" value="Renavam:"/>
-					<p:inputText id="RenavamCarro" value="#{CarroBean.Carros.renavam}" required="true" requiredMessage="Campo Obrigatório"/>				
+					<p:outputLabel for="placa" value="placa:"/>
+					<p:inputText id="placa" value="#{carroBean.carros.placa}" requiredMessage="Campo Obrigatório" />					
+										
+					<p:outputLabel for="Renavamcarro" value="Renavam:"/>
+					<p:inputText id="Renavamcarro" value="#{carroBean.carros.renavam}" required="true" requiredMessage="Campo Obrigatório"/>				
 					
-					<p:outputLabel for="ModeloCarro" value="Modelo:"/>
-					<p:inputText id="modeloCarro" value="#{CarroBean.Carros.modelo}" required="true" requiredMessage="Campo Obrigatório"/>
+					<p:outputLabel for="modelo" value="Modelo:"/>
+					<p:inputText id="modelo" value="#{carroBean.carros.modelo}" required="true" requiredMessage="Campo Obrigatório"/>
 					
-					<p:outputLabel for="CorCarro" value="Cor:"/>
-					<p:password id="corCarro" value="#{CarroBean.Carros.cor}" required="true" requiredMessage="Campo Obrigatório"/>
+					<p:outputLabel for="cor" value="Cor"/>
+					<p:inputText id="cor" value="#{carroBean.carros.cor}" required="true" requiredMessage="Campo Obrigatório"/>
 					
-					<p:outputLabel for="AnoFabricacao" value="Ano de Fabricacao:"/>
-					<p:inputText id="anoFabricacao" value="#{CarroBean.Carros.anoFabricacao}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					<p:outputLabel for="anoFabricacao" value="Ano de Fabricacao:"/>
+					<p:inputText id="anoFabricacao" value="#{carroBean.carros.anoFabricacao}" required="true" requiredMessage="Campo Obrigatorio"/>				
 					
-					<p:outputLabel for="AnoModelo" value="Ano do Modelo:"/>
-					<p:inputText id="anoModelo" value="#{CarroBean.Carros.anoModelo}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					<p:outputLabel for="anoModelo" value="Ano do Modelo:"/>
+					<p:inputText id="anoModelo" value="#{carroBean.carros.anoModelo}" required="true" requiredMessage="Campo Obrigatorio"/>				
 					
-					<p:outputLabel for="ValorDiaria" value="Valor da Diaria:"/>
-					<p:inputText id="valorDiaria" value="#{CarroBean.Carros.valorDiaria}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					<p:outputLabel for="valorDiaria" value="Valor da Diaria:"/>
+					<p:inputNumber id="valorDiaria" type="" value="#{carroBean.carros.valorDiaria}" required="true" requiredMessage="Campo Obrigatorio" modifyValueOnWheel="false"/>				
 					
-					<p:outputLabel for="DescricaoCarro" value="Descrição do Carro:"/>
-					<p:inputText id="descricaoCarro" value="#{CarroBean.Carros.Descricao_Carro}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					<p:outputLabel for="Descricao" value="Descrição do carro:"/>
+					<p:inputTextarea id="Descricao" value="#{carroBean.carros.descricao}" required="true" requiredMessage="Campo Obrigatorio"/>				
 					
-					<p:outputLabel for="MarcaCarro" value="Marca do Carro:"/>
-					<p:inputText id="marcaCarro" value="#{CarroBean.Carros.Descricao_marca}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					<p:outputLabel for="Marca" value="Marca do carro:"/>
+					<p:inputText id="Marca" value="#{carroBean.carros.marca}" required="true" requiredMessage="Campo Obrigatorio"/>				
 							
 					<p:outputLabel value="Data de Cadastro:"/>
-					<h:outputText value="#{usuarioBean.usuario.dataCadastro}">
+					<h:outputText value="#{carroBean.carros.dataCadastro}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 					
-					<p:commandButton value="Salvar" action="#{usuarioBean.salvar}" update="form" styleClass="ui-button-secondary"/>
+					<p:commandButton value="Salvar" action="#{carroBean.salvar}" update="form" styleClass="ui-button-secondary"/>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

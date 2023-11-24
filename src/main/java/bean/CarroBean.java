@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 import dao.CarroDao;
-import dao.UsuarioDao;
 import entidade.Carros;
-import entidade.Usuario;
 import util.MessageUtil;
 
-	public class CarroBean implements Serializable {
+
+@ManagedBean
+@ViewScoped
+public class CarroBean implements Serializable {
 	    private static final long serialVersionUID = 1L;
 
-	    private static Carros carros = new Carros();
-	    private Date dataCadastro = new Date();
+	    private Carros carros = new Carros();	    
+		private Date dataCadastro = new Date();
 	    private List<Carros> list;
-	    private String contarUsuario;
+	 
 	    
 
 	    public CarroBean() {
@@ -51,13 +55,24 @@ import util.MessageUtil;
 	        return null;
 	    }
 
-	    public String getContarUsuario() {
+	    public String getContarCarros() {
 	        if (list == null) {
 	            list = CarroDao.listarTodos();
 	        }
 	        return Integer.toString(list.size());
 	    }
+	    
+	    //isso aqui
+	    public Carros getCarros() {
+	        return carros;
+	    }
+	    
+	    //isso aqui
+	    public void setCarros(Carros carros) {
+	        this.carros = carros;
+	    }
+
+	    
+
 
 	}
-
-

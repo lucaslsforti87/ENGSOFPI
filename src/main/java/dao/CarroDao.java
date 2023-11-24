@@ -40,7 +40,7 @@ public class CarroDao {
 	public static List<Carros> listarTodos() {
 		
 		EntityManager em = JPAUtil.criarEntityManager();
-		Query q = em.createQuery("select u from Usuario u");		
+		Query q = em.createQuery("select u from Carros c");		
 		List<Carros> list = q.getResultList();
 		em.close();
 		return list;
