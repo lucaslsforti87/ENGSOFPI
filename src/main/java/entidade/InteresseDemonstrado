@@ -1,0 +1,35 @@
+package entidade;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Concessionaria {
+    private List<Carros> carros;
+
+    public Concessionaria() {
+        this.carros = new ArrayList<>();
+        // Adicione alguns carros de exemplo
+        carros.add(new Carros("ABC123", 123456, "ModeloA", "Preto", 2022, 2022, 100.0, new Date(), "Carro A", "MarcaA"));
+        carros.add(new Carros("XYZ789", 654321, "ModeloB", "Branco", 2021, 2021, 120.0, new Date(), "Carro B", "MarcaB"));
+        carros.add(new Carros("DEF456", 987654, "ModeloC", "Azul", 2023, 2023, 90.0, new Date(), "Carro C", "MarcaC"));
+    }
+
+    public List<Carros> getCarrosDisponiveis() {
+        List<Carros> carrosDisponiveis = new ArrayList<>();
+        for (Carros carro : carros) {
+            if (!carro.isInteresseDemonstrado()) {
+                carrosDisponiveis.add(carro);
+            }
+        }
+        return carrosDisponiveis;
+    }
+
+    public void demonstrarInteresse(String placa) {
+        for (Carros carro : carros) {
+            if (carro.getPlaca().equals(placa) && !carro.isInteresseDemonstrado()) {
+                carro.setInteresseDemonstrado(true);
+                break;
+            }
+        }
+    }
+}
