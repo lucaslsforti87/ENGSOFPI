@@ -7,7 +7,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import dao.CarroDao;
+
+import dao.CarrosDao;
 import entidade.Carros;
 import util.MessageUtil;
 
@@ -30,7 +31,7 @@ public class CarroBean implements Serializable {
 	    public String salvar() {
 	        try {
 	            carros.setDataCadastro(dataCadastro);
-	            CarroDao.salvar(carros);
+	            CarrosDao.salvar(carros);
 	            MessageUtil.sucesso("Sucesso: ", "Usuário criado com sucesso!");
 	            carros = new Carros();
 	        } catch (Exception e) {
@@ -40,24 +41,24 @@ public class CarroBean implements Serializable {
 	    }
 
 	    public String editar() {
-	        CarroDao.editar(carros);
+	        CarrosDao.editar(carros);
 	        carros = new Carros();
 	        return null;
 	    }
 
 	    public void deletar() {
-	    	CarroDao.deletar(carros);
-	        list = CarroDao.listarTodos();
+	    	CarrosDao.deletar(carros);
+	        list = CarrosDao.listarComFiltro(carros);
 	    }
 
 	    public String listarTodos() {
-	        list = CarroDao.listarTodos();
+	        list = CarrosDao.listarComFiltro(carros);
 	        return null;
 	    }
 
 	    public String getContarCarros() {
 	        if (list == null) {
-	            list = CarroDao.listarTodos();
+	            list = CarrosDao.listarComFiltro(carros);
 	        }
 	        return Integer.toString(list.size());
 	    }

@@ -25,12 +25,15 @@ public class Usuario {
       @Column(name="senha", nullable=false, unique=false)
       private String senha;
       
+      @Column(name="ativo", nullable=false, unique=false)
+      private String Ativo;
+      
       @Column(name="data_cadastro")
       @Temporal(TemporalType.DATE)
       private Date dataCadastro;
      
       @Column(name="data_nascimento")
-      private int dataNascimento;
+      private Date dataNascimento;
       
       @Column(name="email", nullable=false, unique=true)
       private String emailUsuario;
@@ -44,11 +47,11 @@ public class Usuario {
 		this.emailUsuario = emailUsuario;
 	}
 
-	public int getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(int dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

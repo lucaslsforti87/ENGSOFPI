@@ -36,8 +36,8 @@ public class Carros implements Serializable {
 	 	private int anoFabricacao; 
 	 	@Column(name="Ano_modelo")
 	 	private int anoModelo;
-	 	@Column(name="Valor_Diaria")
-	 	private Double valorDiaria;
+	 	@Column(name="Valor_Carro")
+	 	private Double valorCarro;
 	 	@Column(name="Data_Cadastro")
 	 	private Date DataCadastro;
 	 	@Column(name="Descricao_Carro")
@@ -92,11 +92,11 @@ public class Carros implements Serializable {
 			this.anoModelo = anoModelo;
 		}
 		
-		public Double getValorDiaria() {
-			return valorDiaria;
+		public Double getValorCarro() {
+			return valorCarro;
 		}
-		public void setValorDiaria(Double valorDiaria) {
-			this.valorDiaria = valorDiaria;
+		public void setValorCarro(Double valorDiaria) {
+			this.valorCarro = valorDiaria;
 		}
 		@Temporal(TemporalType.DATE)
 		@Column(name="data_cadastro", nullable=false)
