@@ -1,3 +1,41 @@
+Classe Concessionaria vai gerenciar a lista dos carros, a lista dos carros que foram selecionados.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Concessionaria {
+    private List<Carro> carros;
+
+    public Concessionaria() {
+        this.carros = new ArrayList<>();
+        // Adicione alguns carros de exemplo
+        carros.add(new Carro("Carro A"));
+        carros.add(new Carro("Carro B"));
+        carros.add(new Carro("Carro C"));
+    }
+
+    public List<Carro> getCarrosDisponiveis() {
+        List<Carro> carrosDisponiveis = new ArrayList<>();
+        for (Carro carro : carros) {
+            if (!carro.isInteresseDemonstrado()) {
+                carrosDisponiveis.add(carro);
+            }
+        }
+        return carrosDisponiveis;
+    }
+
+    public void demonstrarInteresse(String nomeCarro, String telefone) {
+        for (Carro carro : carros) {
+            if (carro.getNome().equals(nomeCarro) && !carro.isInteresseDemonstrado()) {
+                carro.demonstrarInteresse(telefone);
+                break;
+            }
+        }
+    }
+}
+
+Classe Teste vai fazer com que a gente possa testar a funcionalidade que foi criada
+
 package entidade;
 
 import java.util.ArrayList;
