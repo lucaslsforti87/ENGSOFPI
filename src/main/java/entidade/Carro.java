@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 //isso aqui 
 @Entity
-public class Carros implements Serializable {
+public class Carro implements Serializable {
 	private static final long serialVersionUID = 1L; 
 
 	 	@Id
@@ -36,8 +36,8 @@ public class Carros implements Serializable {
 	 	private int anoFabricacao; 
 	 	@Column(name="Ano_modelo")
 	 	private int anoModelo;
-	 	@Column(name="Valor_Carro")
-	 	private Double valorCarro;
+	 	@Column(name="Valor_Diaria")
+	 	private Double valorDiaria;
 	 	@Column(name="Data_Cadastro")
 	 	private Date DataCadastro;
 	 	@Column(name="Descricao_Carro")
@@ -45,7 +45,6 @@ public class Carros implements Serializable {
 	 	@Column(name="Marca_Carro")
 	 	private String Marca;
 	 	
-	 	 	
 	 	
 	 		
 		public int getId() {
@@ -92,11 +91,11 @@ public class Carros implements Serializable {
 			this.anoModelo = anoModelo;
 		}
 		
-		public Double getValorCarro() {
-			return valorCarro;
+		public Double getValorDiaria() {
+			return valorDiaria;
 		}
-		public void setValorCarro(Double valorDiaria) {
-			this.valorCarro = valorDiaria;
+		public void setValorDiaria(Double valorDiaria) {
+			this.valorDiaria = valorDiaria;
 		}
 		@Temporal(TemporalType.DATE)
 		@Column(name="data_cadastro", nullable=false)

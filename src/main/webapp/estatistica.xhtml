@@ -8,7 +8,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
 	<h:head>
-		<title>RecuperarSenha</title>
+		<title>Recuperar Senha</title>
 	</h:head>
 	
 	<h:body>
@@ -19,27 +19,20 @@
 							
 				<h:panelGrid columns="1">
 	
-					<div style="margin-top: 30px;"/>
+					<div style="margin-top: 30px;">
 						<p:outputLabel for="login" value="Login:"/>
 						<p:inputText id="login" value="#{loginBean.usuario.login}" required="true" requiredMessage="Campo Obrigatorio"/>
+					</div>
 					
+					<div style="margin: 20px 0 20px 0;"/>
 					
-	
-					
-						<p:outputLabel for="datanascimento" value="Data de Nascimento:"/>
-						<p:inputText id="datanascimento"  value="#{loginBean.usuario.dataNascimento}" required="true" requiredMessage="Campo Obrigatorio"/>				
-						
-					
+						<p:outputLabel for="dataNascimento" value="Data de Nascimento:"/>
+						<p:inputText id="dataNascimento"  value="#{loginBean.usuario.dataNascimento}" required="true" requiredMessage="Campo Obrigatorio"/>				
 							
 					
-									<div style="margin: 20px 0 20px 0;"/>
+								
 				
-				
-					
-					<p:commandButton icon="pi pi-sign-in"  action="#{recuperarBean.redefinirSenha}" ajax="false" value="Recuperarar" />
-
-					
-					
+					<p:commandButton icon="pi pi-sign-in"  action="#{loginBean.envia}" ajax="false" value="Recuperar" />
 					
 					
 						<p:link outcome="index" value="Voltar" />

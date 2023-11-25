@@ -8,49 +8,61 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Listando Usuarios Cadastrados</title>
+	<title>Listando Usuario</title>
 </h:head>
 
 <h:body>	
 		
 	<h:form id="form1">
 			
-		<p:panel header="Listagem de Usuarios">
+		<p:panel header="Listagem de Usuários">
 		
-			<p:link outcome="listagem_usuario" value="voltar" 
-				style="display: flex;"/>		
+			<p:linkButton outcome="Listagem_Carro" value="Listagem Carros" 
+			style="margin-right: 20px; background-color: #2E8B57;" target="_blank"/>
 		
-		
+			<div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
 			
-				<p:linkButton action="Cadastro_usuario" outcome="cadastro_usuario" value="Novo" icon="pi pi-user-plus" 
-					style="border: 5px solid; "/>					
+				<p:linkButton action="Cadastro_Usuario" outcome="Cadastrar_Usuario" value="Novo" icon="pi pi-user"
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					width: 8rem;"/>
+										
+				<p:commandButton value="Estatística" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					background-color: #f78fb3;
+					width: 8rem;"/>		
 					
-				<p:linkButton action="Fechar" outcome="index" icon="pi pi-power-off" title="Fechar" 
-					style="border: 5px solid; "/>
-									
+					
+				<p:linkButton action="Sair" outcome="index" icon="pi pi-sign-out" title="Sair" 
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #7f8c8d;
+					width: 3rem;"/>	
+										
+			</div>
 			
-			
-			<p:dataTable id="datatable1" value="#{usuarioBean.list}" var="u" selection="#{usuarioBean.usuario}" selectionMode="single" rowKey="#{l.id}"
+			<p:dataTable id="dt" value="#{usuarioBean.list}" var="l" selection="#{usuarioBean.usuario}" selectionMode="single" rowKey="#{l.id}"
 			paginator="true" rows="5" paginatorPosition="bottom">	
 										
 				<p:column headerText="Id">
 					<p:column>
-						<p:outputLabel value="#{u.id}"/>							
+						<p:outputLabel value="#{l.id}"/>							
 					</p:column>										
 				</p:column>
 				<p:column headerText="Nome">
 					<p:column>
-						<p:outputLabel value="#{u.nomeUsuario}"/>							
+						<p:outputLabel value="#{l.nomeUsuario}"/>							
 					</p:column>										
 				</p:column>
 				<p:column headerText="Login">
 					<p:column>
-						<p:outputLabel value="#{u.login}"/>							
+						<p:outputLabel value="#{l.login}"/>							
 					</p:column>										
 				</p:column>
 				<p:column headerText="Data de Cadastro">
 					<p:column>
-						<p:outputLabel value="#{u.dataCadastro}">
+						<p:outputLabel value="#{l.dataCadastro}">
 							<f:convertDateTime pattern="dd/MM/YYYY"/>
 						</p:outputLabel>					
 					</p:column>										
@@ -58,23 +70,38 @@
 				
 				<p:column headerText="Ações">
 					<p:column>
-						<p:commandButton icon="pi pi-users" oncomplete="PF('visualizar').show()" title="Visualizar" update="form_view"
-							style="border: 5px solid;" styleClass="rounded-button ui-button-success ui-button-outlined"> 													
-							<f:setPropertyActionListener value="#{u}" target="#{usuarioBean.usuario}"/>								
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" title="Visualizar" update="form_view"
+							style="border: 5px solid; 
+							border-radius: 50%;
+							background-color: #f39c12;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">							
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>								
 						</p:commandButton>															
 					</p:column>				
 					
 					<p:column>
-						<p:commandButton icon="pi pi-user-edit" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
-							style="border: 5px solid;" styleClass="rounded-button ui-button-outlined">							
-							<f:setPropertyActionListener value="#{u}" target="#{usuarioBean.usuario}"/>							
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #8e44ad;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>							
 						</p:commandButton>									
 					</p:column>	
 					
 					<p:column>
-						<p:commandButton icon="pi pi-user-minus" oncomplete="PF('excluir').show()" title="Deletar" update="form_del"
-							style="border: 5px solid;" styleClass="rounded-button ui-button-help ui-button-outlined">						
-							<f:setPropertyActionListener value="#{u}" target="#{usuarioBean.usuario}"/>							
+						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" title="Deletar" update="form_del"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #e55039;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>							
 						</p:commandButton>														
 					</p:column>									
 				</p:column>
@@ -85,7 +112,7 @@
 		
 	</h:form>
 	
-	<p:dialog header="Quantidades de Usuario" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+	<p:dialog header="Quantide de Usuário" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
  		<p:outputLabel value="#{usuarioBean.contarUsuario}"/>
 	</p:dialog>
 		
@@ -105,11 +132,10 @@
 				<p:datePicker id="dataCadastro" value="#{usuarioBean.usuario.dataCadastro}" disabled="true" style="width: 300px;" />		
 															
 			</h:panelGrid>
-			
 		</h:form>
 	</p:dialog>			
 	
-	<p:dialog header="Editar Usuario" widgetVar="editar" >
+	<p:dialog header="Editar Email" widgetVar="editar" >
 		<h:form id="form_edit">
 			<h:panelGrid columns="2" cellpadding="5" id="editar" style="width: 500px;">
 				<p:outputLabel for="nome" value="Nome:"/>
@@ -134,9 +160,6 @@
 				
 			<p:commandButton value="Sim" action="#{usuarioBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
 			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>			
-		
-			
-		
 		</h:form>					
 	</p:dialog>	
 

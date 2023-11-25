@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Listando Carros</title>
+</h:head>
+
+<h:body>	
+		
+	<h:form id="form1">
+			
+		<p:panel header="Página de Listagem de carro" >
+		
+			
+			<div style="display: flex; justify-content: space-around; margin-bottom: 25px;">
+				
+				<p:linkButton action="Cadastrar_Carro" outcome="Cadastrar_Carro" value="Cadastrar" icon="pi pi-book" 
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					background-color: #f78fb3;
+					width: 8rem;"/>
+				
+				<p:linkButton action="Listagem_Usuario" outcome="Listagem_Usuario" value="Usuários" icon="pi pi-users" 
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					width: 8rem;"/>		
+				
+				<p:linkButton outcome="Recuperar_Senha" value="RecuperarSenha" icon="pi pi-chart-line"
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					background-color: #d9b90c;
+					width: 12rem;"/>	
+											
+				<p:commandButton title="EstatÃ­stica" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #d9b90c;
+					width: 3rem;"/>	
+					
+				<p:linkButton action="Sair" outcome="index" icon="pi pi-sign-out" title="Sair" 
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #7f8c8d;
+					width: 3rem;"/>	
+															
+			</div>
+			
+			
+			<p:dataTable id="dt" value="#{carroBean.list}" var="l" selection="#{carroBean.carro}" selectionMode="single" rowKey="#{l.id}"
+			paginator="true" rows="5" paginatorPosition="bottom">	
+										
+				<p:column headerText="Id">
+					<p:column>
+						<p:outputLabel value="#{l.id}"/>							
+					</p:column>	
+					</p:column>
+					
+					<p:column headerText="Marca">
+					<p:column>
+						<p:outputLabel value="#{l.marca}"/>							
+					</p:column>
+					</p:column>
+					
+					<p:column headerText="Ano Modelo">
+					<p:column>
+						<p:outputLabel value="#{l.anoModelo}"/>							
+					</p:column>	
+					</p:column>
+					
+					<p:column headerText="Ano Fabricacao">
+					<p:column>
+						<p:outputLabel value="#{l.anoFabricacao}"/>							
+					</p:column>	
+					</p:column>										
+				
+				
+				<p:column headerText="valorDiaria">
+					<p:column>
+						<p:outputLabel value="#{l.valorDiaria}"/>							
+					</p:column>										
+				</p:column>
+				
+				<p:column headerText="Descricao">
+					<p:column>
+						<p:outputLabel value="#{l.descricao}"/>							
+					</p:column>										
+				</p:column>
+				
+				<p:column headerText="Data de Cadastro" sortBy="#{l.dataCadastro}">
+					<p:column>
+						<p:outputLabel value="#{l.dataCadastro}">
+							<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" timeZone="GMT-03:00"/>
+						</p:outputLabel>							
+					</p:column>										
+				</p:column>
+								
+				<p:column headerText="Ações">
+					<p:column>
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" title="Visualizar" update="form_view"
+							style="border: 5px solid; 
+							border-radius: 50%;
+							background-color: #27ae60;
+							margin-right: 7px;
+							width: 2rem;
+							height: 2rem;">							
+							<f:setPropertyActionListener value="#{l}" target="#{carroBean.carro}"/>								
+						</p:commandButton>
+															
+					</p:column>				
+					<p:column>
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #8e44ad;
+							margin-right: 7px;
+							width: 2rem;
+							height: 2rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{carroBean.carro}"/>							
+						</p:commandButton>									
+					</p:column>	
+					<p:column>
+						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" title="Deletar" update="form_del" disabled="true"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #e55039;
+							margin-right: 7px;
+							width: 2rem;
+							height: 2rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{carroBean.carro}"/>							
+						</p:commandButton>														
+					</p:column>				
+				  </p:column>					
+			
+							
+			</p:dataTable>
+			
+		</p:panel>	
+		
+	</h:form>
+	
+	<p:dialog header="Quantide de carro" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+ 		<p:outputLabel value="#{carroBean.contarCarro}"/>
+	</p:dialog>
+		
+	<p:dialog header="Visualizar carro" widgetVar="visualizar" >
+		<h:form id="form_view" >
+			<h:panelGrid columns="4" cellpadding="5" id="visualizar">
+					
+					<p:outputLabel for="id" value="Id: "/>
+					<p:inputText id="id" value="#{carroBean.carro.id}" disabled="true"/>			
+					
+					<p:outputLabel for="Marca" value="Marca: "/>
+					<p:inputTextarea id="Marca" value="#{carroBean.carro.marca}" disabled="true"/>	
+					
+					<p:outputLabel for="anoModelo" value="Ano Modelo: "/>
+					<p:inputTextarea id="anoModelo" value="#{carroBean.carro.anoModelo}" disabled="true"/>
+					
+					<p:outputLabel for="anoFabricacao" value="Ano Fabricacao: "/>
+					<p:inputTextarea id="anoFabricacao" value="#{carroBean.carro.anoFabricacao}" disabled="true"/>			
+					
+					<p:outputLabel for="valorDiaria" value="valor Diaria: "/>
+					<p:inputTextarea id="valorDiaria" value="#{carroBean.carro.valorDiaria}" disabled="true"/>
+					
+					<p:outputLabel for="Descricao" value="Descricao: "/>
+					<p:inputTextarea id="Descricao" value="#{carroBean.carro.descricao}" disabled="true"/>
+					
+					<p:outputLabel for="dataCadastro" value="Data de Cadastro: "/>
+					<p:inputText id="dataCadastro" value="#{carroBean.carro.dataCadastro}" disabled="true">
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" timeZone="GMT-03:00"/>
+					</p:inputText>
+																															
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>			
+	
+	<p:dialog header="Editar carro" widgetVar="editar">
+		<h:form id="form_edit">
+			<h:panelGrid columns="4" cellpadding="5" id="editar">
+				<p:outputLabel for="id" value="Id: "/>
+					<p:inputText id="id" value="#{carroBean.carro.id}" disabled="true" style="width: 10%"/>
+					
+												
+					<p:outputLabel for="Marca" value="Marca: "/>
+					<p:inputTextarea id="Marca" value="#{carroBean.carro.marca}" style="width: 100%"/>
+					
+					<p:outputLabel for="anoModelo" value="Ano Modelo: "/>
+					<p:inputTextarea id="anoModelo" value="#{carroBean.carro.anoModelo}" style="width: 100%"/>
+					
+					<p:outputLabel for="anoFabricacao" value="Ano Fabricacao: "/>
+					<p:inputTextarea id="anoFabricacao" value="#{carroBean.carro.anoFabricacao}" style="width: 100%"/>			
+					
+					<p:outputLabel for="valorDiaria" value="valor Diaria: "/>
+					<p:inputTextarea id="valorDiaria" value="#{carroBean.carro.valorDiaria}" style="width: 100%"/>
+					
+					<p:outputLabel for="Descricao" value="Descricao: "/>
+					<p:inputTextarea id="Descricao" value="#{carroBean.carro.descricao}" style="width: 100%"/>
+							
+					
+											
+			</h:panelGrid>
+				
+			<p:commandButton value="Atualizar" action="#{carroBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#8e44ad; margin-top: 40px;" update="form1"/>		
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog header="Deseja relamente excluir o carro?" widgetVar="excluir">
+		<h:form id="form_del">
+			<h:panelGrid columns="2" cellpadding="5" id="excluir">
+				<p:inputText id="destinatario" value="#{carroBean.carro.id}" disabled="true"/>
+			</h:panelGrid>
+				
+			<p:commandButton value="Sim" action="#{carroBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
+			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>	
+					
+		</h:form>					
+	</p:dialog>	
+
+</h:body>
+
+</html>

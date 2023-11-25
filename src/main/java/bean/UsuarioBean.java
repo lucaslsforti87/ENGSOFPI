@@ -25,11 +25,6 @@ public class UsuarioBean implements Serializable{
 	private List<Usuario> list;
 	
 	private  String contarUsuario;
-	
-	public UsuarioBean() {
-		System.out.println("Construiu o Bean");
-		
-	}
 		
 		
 	public String salvar() {
@@ -55,17 +50,17 @@ public class UsuarioBean implements Serializable{
 
 	public void deletar() {		
 		UsuarioDao.deletar(usuario);
-		list = UsuarioDao.listarComFiltro(usuario);
+		list = UsuarioDao.listarTodos();
 	}
 	
-	public String listarComFiltro() {		
-		UsuarioDao.listarComFiltro(usuario);
+	public String listarTodos() {		
+		UsuarioDao.listarTodos();
 		return null;
 	}		
 
 	public List<Usuario> getList() {
 		if (list == null) {
-			list = UsuarioDao.listarComFiltro(usuario);
+			list = UsuarioDao.listarTodos();
 		}
 		return list;
 	}
@@ -85,7 +80,7 @@ public class UsuarioBean implements Serializable{
 	public String getContarUsuario() {
 		
 		if (list == null) {
-			list = UsuarioDao.listarComFiltro(usuario);
+			list = UsuarioDao.listarTodos();
 		}
 		return Integer.toString(list.size());
 	}
